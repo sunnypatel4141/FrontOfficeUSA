@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE JposEntries PUBLIC "-//JavaPOS//DTD//EN" "jpos/res/jcl.dtd">
+<JposEntries><JposEntry logicalName="Star TSP100 Cutter (TSP143)">
+    <creation factoryClass="com.starmicronics.starjavapos.ServiceInstanceFactory" serviceClass="com.starmicronics.starjavapos.CashDrawerService"/>
+    <vendor name="Star Micronics" url="www.starmicronics.com"/>
+    <jpos category="CashDrawer" version="1.9"/>
+    <product description="Printer controlled cash drawer" name="Star Micronics cash drawer controller" url="www.starmicronics.com"/>
+    <prop name="portName" type="String" value="USB002"/>
+    <prop name="portSettings" type="String" value=""/>
+    <prop name="ioTimeoutMillis" type="Integer" value="5000"/>
+    <prop name="controlPrimaryDrawer" type="Boolean" value="true"/>
+    <prop name="firePulseWidth" type="Long" value="200"/>
+    <prop name="sleepPulseWidth" type="Long" value="200"/>
+    <prop name="capStatus" type="Boolean" value="true"/>
+    <prop name="signalLevelHighWhenDrawerOpen" type="Boolean" value="true"/>
+</JposEntry>
+<JposEntry logicalName="VirtualLineDisplay">
+    <creation factoryClass="com.xyz.jpos.XyzJposServiceInstanceFactory" serviceClass="com.xyz.jpos.LineDisplayService"/>
+    <vendor name="Xyz, Corp." url="http://www.javapos.com"/>
+    <jpos category="LineDisplay" version="1.5"/>
+    <product description="Example virtual LineDisplay JavaPOS Service from virtual Xyz Corporation" name="Xyz Virtual LineDisplay Service for JavaPOS(TM) Standard" url="http://www.javapos.com"/>
+    <!--Other non JavaPOS required property (mostly vendor properties and bus specific properties i.e. RS232 )-->
+</JposEntry> 
+</JposEntries>

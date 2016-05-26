@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="XZRead" language="groovy" pageWidth="226" pageHeight="842" columnWidth="205" leftMargin="1" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac4120e4-58e6-454c-9062-99b42907d710">
+	<property name="ireport.zoom" value="3.7974983358324192"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2443"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="lastread" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select ifnull(mc.name, si.name) as categoryname, sum(total) as total from saleitem si left join product pr on si.prid=pr.id left join maincategory mc on pr.mcid=mc.id where si.created between $P{lastread} and current_timestamp() group by categoryname order by categoryname]]>
+	</queryString>
+	<field name="categoryname" class="java.lang.String"/>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="205" height="104" uuid="2b97264f-f2dc-4916-961d-95dd4c9cd2ff"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "StoreInformation.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="105" y="104" width="100" height="15" uuid="145d37dd-987f-4885-acac-aad26b7075b6"/>
+				<textFieldExpression><![CDATA[$P{lastread}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="104" width="105" height="15" uuid="4711a0b1-1620-42b1-850d-56dcd14dcb8b"/>
+				<text><![CDATA[Last Read]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="119" width="205" height="15" uuid="b59f770a-4143-4b17-8fd9-383236de1fe9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="18" uuid="4f832cd4-0a3d-4c76-901c-523b6b95b882"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Category Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="0" width="73" height="18" uuid="28b72915-e33b-4b56-8e63-aae1002df5b5"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="205" height="1" uuid="06b95b63-fb55-47f4-ab1c-2bd6e54ff531"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="132" height="18" uuid="bdd301a7-8be1-47ed-9c7a-fd9c70846c00"/>
+				<textFieldExpression><![CDATA[$F{categoryname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="73" height="18" uuid="c8f3d3b4-122d-4b2e-b714-701695851fee"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="145">
+			<subreport>
+				<reportElement x="0" y="0" width="205" height="143" uuid="66dffb5d-c2c5-42ca-b195-5ff18f27288c"/>
+				<subreportParameter name="lastread">
+					<subreportParameterExpression><![CDATA[$P{lastread}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "XZRead_Totals.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="436">
+			<subreport>
+				<reportElement x="0" y="0" width="205" height="146" uuid="07f29465-ee41-492a-84dd-6c12e9c8e797"/>
+				<subreportParameter name="lastread">
+					<subreportParameterExpression><![CDATA[$P{lastread}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "XZ_Payout_Totals.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="146" width="205" height="156" uuid="5b3960f8-7f86-4297-88da-31d0c28f5715"/>
+				<subreportParameter name="lastread">
+					<subreportParameterExpression><![CDATA[$P{lastread}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "XZ_NonTax_Totals.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="302" width="205" height="134" uuid="82a6fee0-a8bc-4981-87df-644da686d5f6"/>
+				<subreportParameter name="lastread">
+					<subreportParameterExpression><![CDATA[$P{lastread}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "XZ_Tax_Totals.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

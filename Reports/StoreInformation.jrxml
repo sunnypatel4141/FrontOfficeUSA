@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StoreInformation" language="groovy" pageWidth="225" pageHeight="141" columnWidth="225" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="32f872d2-cd0d-4d3d-a06d-3d0b3cd4cfa9">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM storeinfo]]>
+	</queryString>
+	<field name="storename" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="buildingnameno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="postcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="phone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fax" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="webaddress" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="119">
+			<textField>
+				<reportElement x="0" y="0" width="203" height="13" uuid="f3aefe3b-683c-4df2-bf42-8ca97b312041"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{storename}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="13" width="203" height="13" uuid="7c9a40eb-f717-4cd5-8024-513441f8da09"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{buildingnameno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="26" width="203" height="13" uuid="1865e5f8-f85e-4f2f-86ac-55e92602da4f"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{address1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="39" width="203" height="13" uuid="30e3cb9a-91dd-4b7b-86ea-1e14bcf35c10"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{address2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="51" width="203" height="13" uuid="be609030-4d76-4cb8-9b52-f01954b55afa"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{postcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="64" width="203" height="13" uuid="c71e1ebf-e062-4b3a-8a8a-e216487b9ad5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{vat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="77" width="203" height="13" uuid="2dbbe67c-df39-43f2-ade5-eb2301f97240"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="90" width="203" height="13" uuid="ccf5978e-4a64-451b-bfae-92e7e7000f05"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="103" width="203" height="13" uuid="7a494632-5a8e-4588-a581-5c7fac512830"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{webaddress}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CustomerReceipt" language="groovy" pageWidth="226" pageHeight="470" whenNoDataType="AllSectionsNoDetail" columnWidth="226" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="20" whenResourceMissingType="Empty" uuid="7a8fcb2c-6b21-414a-bc8f-3e91a20fdbd0">
+	<property name="ireport.zoom" value="2.853116706110054"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="saleid" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select si.created, si.saleid, si.name, si.qty, si.unitprice, si.total, si.discount, si.taxrate from saleitem si where si.saleid=$P{saleid};]]>
+	</queryString>
+	<field name="created" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="saleid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unitprice" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taxrate" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="qty_1" class="java.lang.Integer" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{qty}]]></variableExpression>
+	</variable>
+	<variable name="totalprice" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{qty} * $F{unitprice}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="226" height="100" uuid="5b14c331-bf24-4ce6-8778-20e45b8bb1d0"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "StoreInformation.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="220" height="1" uuid="0ee5726b-23c8-4f9b-82a6-19bf81342846"/>
+			</line>
+			<staticText>
+				<reportElement x="14" y="11" width="83" height="11" uuid="8f7e99d7-34f6-459a-992d-8f8229ade759"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="11" width="72" height="11" uuid="d1bd3cdd-055c-4bb6-856c-558339783ca2"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="220" height="1" uuid="6f173cbd-b85f-45dd-b32a-95081b670c90"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="87" y="0" width="39" height="11" uuid="b639bd73-f05b-466d-9014-712a9ea5434f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saleid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="0" width="73" height="11" uuid="1681ee19-1dff-4ca0-8a3b-edd6be43923b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Order Reference]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="126" y="0" width="65" height="11" uuid="89757fc2-fa50-4a43-9ad7-b8a750e6f9e8"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{created}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="14" y="0" width="177" height="15" uuid="4d4bc0f5-fb1f-4e27-9c53-b5b014bb35ea"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="14" y="15" width="32" height="15" uuid="1cca5c1f-a55c-414f-adcc-2a500c34b44c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="46" y="15" width="17" height="15" uuid="9875c76c-ae38-462c-88f7-f1c74e6aef84"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[@]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="64" y="15" width="67" height="15" uuid="1c0ec7b4-3736-493d-ae4e-6a7865017b89"/>
+				<textFieldExpression><![CDATA[$F{unitprice}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="131" y="15" width="60" height="15" uuid="1f2223a7-17cc-44ac-9aa0-1e8b3cd88a08"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{totalprice}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="220" height="1" uuid="1e67e9f8-b7cd-4662-b00e-059fb3fbacbf"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="141" y="0" width="50" height="11" uuid="455e879f-546f-4bf7-8056-088d362676fe"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{qty_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="0" width="55" height="11" uuid="fe6218b6-0461-41e3-bf3e-5ff94a08ed07"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Item Count]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="130" splitType="Stretch">
+			<subreport>
+				<reportElement x="8" y="0" width="183" height="46" uuid="65820c4f-4da8-42a5-940d-5afdb1c6bb65"/>
+				<subreportParameter name="saleid">
+					<subreportParameterExpression><![CDATA[$P{saleid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CustomerReceipt_Totals_Summary.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="8" y="56" width="183" height="38" uuid="1d90d168-a4bc-474c-8498-bf2bcc694bd9"/>
+				<subreportParameter name="saleid">
+					<subreportParameterExpression><![CDATA[$P{saleid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CustomerReceipt_Totals.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+</jasperReport>

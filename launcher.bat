@@ -1,0 +1,1 @@
+java -jar dist/FrontOffice_USA.jar >> log.txt

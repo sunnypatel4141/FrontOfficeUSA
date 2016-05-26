@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DaySummary" language="groovy" pageWidth="226" pageHeight="842" columnWidth="203" leftMargin="3" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b97bff81-762d-45c8-9e96-4d7df7b80436">
+	<property name="ireport.zoom" value="2.3579476910000117"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select ifnull(mc.name, si.name) as categoryname, sum(total) as total from saleitem si left join product pr on si.prid=pr.id left join maincategory mc on pr.mcid=mc.id where date(si.created) = date(current_timestamp()) group by categoryname order by categoryname]]>
+	</queryString>
+	<field name="categoryname" class="java.lang.String"/>
+	<field name="total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="138" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="15" width="203" height="106" uuid="8e965246-0444-4a9e-b479-8a4a0346c23c"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "StoreInformation.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="223" height="15" uuid="893116c4-79df-41dc-8679-8d7ceff71499"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Day Summary]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="122" width="203" height="15" uuid="c2e6d09b-a9d1-4d1e-91a3-7a2c7e1686c3"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="15" uuid="8704c829-1f51-4ff8-b83f-b8168822c8e1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Category Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="0" width="56" height="14" uuid="8d04bbc2-382c-4ca2-a632-41e3357dbc17"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="15" width="203" height="1" uuid="11c976bf-59fd-4d80-99a4-94e33b1abb12"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="0" width="122" height="15" uuid="1e781922-43ff-484c-9889-3985c811c9c4"/>
+				<textFieldExpression><![CDATA[$F{categoryname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="0" width="43" height="15" uuid="ca97fab7-5529-46e1-ab12-5aa27906b2d7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="539">
+			<subreport>
+				<reportElement x="0" y="0" width="203" height="104" uuid="80b15bd6-e0a2-4650-a997-ada0ac2d04cd"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DaySummary_Payout_Totals.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="104" width="203" height="101" uuid="54725b0f-d4ba-4ec2-8ecd-f236a2086230"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DaySummary_NonTax_Totals.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="205" width="203" height="121" uuid="fede0085-a389-467d-9d21-9f6fe0883914"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DaySummary_Tax_Totals.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="360" width="203" height="179" uuid="67825e1c-22dd-4cc8-a3b7-5feae3609d75"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "DaySummary_Totals.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

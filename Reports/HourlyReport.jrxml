@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HourlyReport" language="groovy" pageWidth="226" pageHeight="842" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d34fcf80-c239-4024-9951-758b910b5008">
+	<property name="ireport.zoom" value="2.8531167061100033"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="115"/>
+	<queryString>
+		<![CDATA[select hour(created) as hour, (sum(cash) + sum(card) + sum(voucher) + sum(online) + sum(account) + sum(`change`)) as amount, count(hour(created)) as customers from sale where date(created) = DATE(Current_timestamp()) group by hour(created);]]>
+	</queryString>
+	<field name="hour" class="java.lang.Integer"/>
+	<field name="amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customers" class="java.lang.Long"/>
+	<variable name="amount_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{amount}]]></variableExpression>
+	</variable>
+	<variable name="customers_1" class="java.lang.Long" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{customers}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="18" uuid="9820d285-ac85-4df3-8520-1aad5954f1d6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Hourly Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="48" height="18" uuid="10b0e4ea-e4d4-435f-8a6b-1c6af08859d1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hour]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="0" width="57" height="18" uuid="d9a23fcc-f3cb-4653-9126-60f3666cc3d0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="105" y="0" width="81" height="18" uuid="b53edfa0-7b36-480d-bfc3-43cee0551b6e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transactions]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-16" y="19" width="219" height="1" uuid="8250a39b-f734-4930-812b-3b93bf854d80"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="48" height="20" uuid="ed7ec627-e017-4afc-a2c6-bfe26f57c34b"/>
+				<textFieldExpression><![CDATA[$F{hour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="0" width="57" height="20" uuid="69e19f16-225b-49e3-8fe8-5b9a8600afca"/>
+				<textFieldExpression><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="0" width="81" height="20" uuid="1db0f776-0494-4a49-9110-4f3b1efa1930"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{customers}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="32" y="8" width="69" height="18" uuid="9f6b731b-194e-4ec3-8d93-49452ddf434a"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{amount_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="8" width="80" height="18" uuid="c80fd2e9-450c-4aa2-bbe9-01526f213b54"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{customers_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="8" width="32" height="18" uuid="f9cb1723-73a6-4792-9686-6d6458c86256"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-16" y="3" width="219" height="1" uuid="56336819-0d48-4082-9112-9c15b1104f49"/>
+			</line>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="22" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="1" y="0" width="184" height="20" uuid="427b9af2-5b90-4f59-9faa-bca1a53ac948"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

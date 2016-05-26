@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CustomerReceipt_Totals_Summary" language="groovy" pageWidth="195" pageHeight="82" columnWidth="195" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4be01a9c-9515-42de-96a2-c431b9790f3c">
+	<property name="ireport.zoom" value="2.8531167061100047"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="saleid" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from sale where id=$P{saleid}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="userid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="register" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cash" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="card" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="voucher" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="online" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="account" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="amounttopay" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taxamount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="change" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="created" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Total" class="java.lang.String">
+		<variableExpression><![CDATA[$F{cash} + $F{card} + $F{voucher} + $F{online} + $F{account}]]></variableExpression>
+	</variable>
+	<variable name="SubTotal" class="java.lang.String">
+		<variableExpression><![CDATA[$F{amounttopay} - $F{taxamount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="64">
+			<staticText>
+				<reportElement x="0" y="40" width="64" height="11" uuid="e845f01d-e79a-4716-b2c9-e4c56e9e8e84"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="40" width="83" height="11" uuid="e1ebd540-9da4-4ac5-89b0-7ac018acf5bf"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amounttopay}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="64" height="11" uuid="a171fa04-02da-4ca4-93eb-0c8dd741c0be"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Change]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="30" width="83" height="11" uuid="23765437-46f4-4a30-8ac3-efd1cabd074d"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{change} * -1]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="20" width="83" height="11" uuid="f55c8fbd-46f6-41a0-9319-fcffbe147acd"/>
+				<textElement textAlignment="Right">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="64" height="11" uuid="f82bef58-ff10-4f41-877d-71a919e304ca"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Paid]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="10" width="64" height="11" uuid="f85f078c-f3cc-4922-aa75-917f713d0cd0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tax Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="10" width="83" height="11" uuid="45b5ec67-6fd1-4b2c-aac5-f2745b217de1"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{taxamount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="64" height="11" uuid="f74d47fe-764d-4c5b-9be9-046428abc91b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="0" width="83" height="11" uuid="38184743-41e5-449a-83b2-a5566eac99cf"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{SubTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

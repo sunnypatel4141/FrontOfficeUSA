@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Blanks not allowed -->
+<settingsFile>
+<general>
+        <!-- Basic Settings -->
+	<companyName>J and J Food Mart</companyName>
+	<address>305 Marion Ave.</address>
+        <town>Mansfield</town>
+	<postCode>44903</postCode>
+	<tel>4195225260</tel>
+	<vat>00000</vat>
+	<e-mail>admin@example.co.uk</e-mail>
+	<web>www.example.co.uk</web>
+	<footNoteone>Thank You</footNoteone>
+	<footNote2>FOR SHOPPING</footNote2>
+	<footNote3>WITH US</footNote3>
+
+
+        <!-- Database Settings -->
+	<url>jdbc:mysql://localhost:3306/myepos</url>
+	<user>myadmin</user>
+	<password>mypassword</password>
+    <!--Backup Database Settings-->
+    <backupurl>jdbc:mysql://domain.local:3306/myepos_usa</backupurl>
+	<backupuser>myadmin</backupuser>
+	<backuppassword>mypassword</backuppassword>
+
+	<!-- The Socket Server configurations -->
+        <socketserver>localhost</socketserver>
+        <socketport>5555</socketport>
+	<tillNumber>1</tillNumber>
+
+
+	<!-- Peripheral settings -->
+        <!-- FIXME -->
+        <printer>Star TSP100 Cutter (TSP143)</printer>
+	<custDispCOM>true</custDispCOM>
+	<COMPort>COM4</COMPort>
+	<custDispUSB>false</custDispUSB>
+	<cashDrawer>CashDrawer</cashDrawer>
+	<weightScale>2</weightScale>
+	<printerCOM>1</printerCOM>
+	<lineDisp>Next Customer Please</lineDisp>
+        <lineDisp2>                    </lineDisp2>
+        <cashDrawerType>0</cashDrawerType><!-- 1 is Bash 2 is Star tsp -->
+<currentVersion>1.22452</currentVersion>
+<updateURL>http://192.168.11.172/frontoffice/UPDATE/</updateURL>
+<jarFileName>FrontOffice_USA.jar</jarFileName>
+<TestMode>0</TestMode><!-- A Flag so that we can handle this properly -->
+
+</general>
+
+</settingsFile>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DaySummary_Totals" language="groovy" pageWidth="174" pageHeight="169" columnWidth="174" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4d2b82da-504a-4153-898e-8247ee1c0527">
+	<property name="ireport.zoom" value="1.8181818181818215"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select (sum(`cash`) + sum(`change`)) as total_cash, sum(`card`), sum(`voucher`), sum(`online`), sum(`account`), sum(`change`), sum(`amounttopay`), sum(`taxamount`) from sale sa where date(sa.`created`) = date(current_timestamp())]]>
+	</queryString>
+	<field name="total_cash" class="java.math.BigDecimal"/>
+	<field name="sum(`card`)" class="java.math.BigDecimal"/>
+	<field name="sum(`voucher`)" class="java.math.BigDecimal"/>
+	<field name="sum(`online`)" class="java.math.BigDecimal"/>
+	<field name="sum(`account`)" class="java.math.BigDecimal"/>
+	<field name="sum(`change`)" class="java.math.BigDecimal"/>
+	<field name="sum(`amounttopay`)" class="java.math.BigDecimal"/>
+	<field name="sum(`taxamount`)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="3" width="44" height="15" uuid="7395e8f8-eee8-4c85-afc2-3ab012b6fc8a"/>
+				<text><![CDATA[Cash]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="3" width="100" height="15" uuid="903f1159-7310-4b44-b3e4-19041dcf71f0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{total_cash}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="18" width="44" height="15" uuid="a29eb1e4-c749-4380-b1c6-e423f3bd23e8"/>
+				<text><![CDATA[Card]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="18" width="100" height="15" uuid="e4107695-8f76-48b2-8676-5a1a2a78a50a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sum(`card`)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="33" width="44" height="15" uuid="f6cfd777-f6bf-4ae7-9430-22c3c29f8ca5"/>
+				<text><![CDATA[Voucher]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="33" width="100" height="15" uuid="fc07788a-8080-4ced-a5c1-46756bf1c30f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sum(`voucher`)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="48" width="44" height="15" uuid="6bc91b28-c2c4-47da-8697-fcb03b05b740"/>
+				<text><![CDATA[Online]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="48" width="100" height="15" uuid="8757eafa-5998-494f-9e76-2879ff869165"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sum(`online`)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="63" width="44" height="15" uuid="9236691a-10be-4209-bd7c-e07ddce6b249"/>
+				<text><![CDATA[Account]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="63" width="100" height="15" uuid="dac88ba7-7c95-4a78-978a-57300dd9e092"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sum(`account`)}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="95" width="58" height="15" uuid="de865b29-d901-4085-9d88-35c1906c89c1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Sale]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="95" width="100" height="15" uuid="b2a46070-6d54-473d-96d8-d1dd38d533fd"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sum(`amounttopay`)}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="93" width="171" height="1" uuid="164ff9ca-867f-45c8-8020-d0f29647f4d7"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="78" width="58" height="15" uuid="c4380ae1-6cf5-488b-8b5c-f82217504738"/>
+				<text><![CDATA[Tax]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="73" y="78" width="100" height="15" uuid="cb068d67-6337-4fe5-9c64-54480ed6679e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{sum(`taxamount`)}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="173" height="1" uuid="1986a251-dbfc-4552-8e88-726d1c0f9c9e"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

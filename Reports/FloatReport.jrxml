@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FloatReport" language="groovy" pageWidth="226" pageHeight="340" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1eca9085-3bdc-452e-ab30-eced33dca492">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="85"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select cdhi.register, cdhi.openingbalance, cdhi.cashlift, cdhi.cashinput, cdhi.currentbalance, concat(usrs1.firstname, ' ', usrs1.lastname) as approvername, concat(usrs2.firstname, ' ', usrs2.lastname) as creatername from cashdrawerhistory cdhi left join users usrs1 on usrs1.id = cdhi.approverid left join users usrs2 on usrs2.id=cdhi.createdby where cdhi.id = $P{id}]]>
+	</queryString>
+	<field name="register" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="openingbalance" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cashlift" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cashinput" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="currentbalance" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="approvername" class="java.lang.String"/>
+	<field name="creatername" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<subreport>
+				<reportElement x="-15" y="0" width="215" height="110" uuid="8103dabd-b73d-48bc-88a0-e5b1698f2b44"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "StoreInformation.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="186" height="20" uuid="13ec6735-cfda-4526-9934-9f0dbf3df4cc"/>
+				<textElement textAlignment="Center">
+					<font size="14" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Float Ticket]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="128" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="74" height="18" uuid="724d956b-7095-4603-875f-e9c5e4afb0f8"/>
+				<text><![CDATA[Register]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="0" width="97" height="18" uuid="4fdbc9fe-cd63-4fcf-adc3-713c9c3446a2"/>
+				<textFieldExpression><![CDATA[$F{register}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="18" width="89" height="18" uuid="693a3142-7e96-47ad-b422-3b699d5fbe9e"/>
+				<text><![CDATA[Opening Bal.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="18" width="97" height="18" uuid="dfe4e42d-47bb-4d7b-9d5e-1ef4d0106709"/>
+				<textFieldExpression><![CDATA[$F{openingbalance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="36" width="74" height="18" uuid="11563b65-1586-4612-93d4-2ad3dd7dc2a6"/>
+				<text><![CDATA[Cash Out]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="36" width="97" height="18" uuid="2690e1d2-fb61-4c72-ab7d-80f88323d9fd"/>
+				<textFieldExpression><![CDATA[$F{cashlift}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="54" width="74" height="18" uuid="5722dde8-3422-43bb-9c0e-76371285b013"/>
+				<text><![CDATA[Cash In]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="54" width="97" height="18" uuid="7cdc5465-f662-4cfa-b285-9c3da6f8257f"/>
+				<textFieldExpression><![CDATA[$F{cashinput}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="72" width="89" height="18" uuid="416809ef-e7d9-49a5-a344-7e66c1b08de6"/>
+				<text><![CDATA[Current Bal.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="72" width="97" height="18" uuid="12a4539d-b421-4958-994b-b1cb3cb62c65"/>
+				<textFieldExpression><![CDATA[$F{currentbalance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="89" height="18" uuid="1ab6fc8b-6421-4106-94b8-b44f3913fb42"/>
+				<text><![CDATA[Approver]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="90" width="97" height="18" uuid="475adb1e-25b5-45f9-a9ea-32a9ff04a90c"/>
+				<textFieldExpression><![CDATA[$F{approvername}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="108" width="89" height="18" uuid="d7543cb6-02a6-40ce-a363-02341aa85a73"/>
+				<text><![CDATA[Creater]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="108" width="97" height="18" uuid="692c875d-9256-452e-964e-c14560866657"/>
+				<textFieldExpression><![CDATA[$F{creatername}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

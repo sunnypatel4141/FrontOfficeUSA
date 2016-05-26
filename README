@@ -1,0 +1,17 @@
+# The Top 3 Priorities of this project are
+
+1. Need to get Reciept and Z-Read working
+2. Need to get the Line Display to work properly
+3. Need to get the table selection working where we can change qty and price
+
+
+
+```sql
+CREATE VIEW `searchproducts` AS 
+    select `pr`.`id` AS `prid`,`pr`.`name` AS `name`,`br`.`barcode` AS `barcode`,`pi`.`price` AS `price`, `tx`.`taxpercentage`
+    from ((`barcode` `br` 
+        left join `product` `pr` on((`pr`.`id` = `br`.`prid`))) 
+        left join `productprice` `pi` on((`pi`.`prid` = `br`.`prid`))) 
+        left join `taxcode` `tx` on((`tx`.`id` = `pr`.`taxid`))
+where (`pi`.`qty` = '1');
+```

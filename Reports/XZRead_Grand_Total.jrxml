@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="XZRead_Grand_Total" language="groovy" pageWidth="212" pageHeight="130" columnWidth="212" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c8306d94-e728-4316-b22d-b6f963bf9655">
+	<property name="ireport.zoom" value="4.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="lastread" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select sum(si.total) as total_cash from saleitem si where si.`created` > $P{lastread} and si.total > 0]]>
+	</queryString>
+	<field name="total_cash" class="java.math.BigDecimal"/>
+	<variable name="total_cash_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_cash}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="69" height="17" uuid="8caa5859-243b-48c9-bc62-acedca9eaaa1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="0" width="89" height="17" uuid="dd20df0d-1dd8-4968-931d-58a2d8f895b2"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_cash}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
